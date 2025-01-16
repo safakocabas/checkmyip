@@ -196,27 +196,24 @@ app.post('/api/captcha/verify', (req, res) => {
 
 app.get('/api/ip-info', async (req, res) => {
     try {
-        // IP bilgilerini alın
         const ipResponse = await axios.get('https://api.ipify.org?format=json');
         const ip = ipResponse.data.ip;
 
-        // Lokasyon bilgilerini al
         const geoResponse = await axios.get(`https://ipapi.co/${ip}/json/`);
         const { country_name, city, org } = geoResponse.data;
 
-        // JSON yanıtı gönder
         res.json({
             ip: ip,
             country: country_name,
             city: city,
             isp: org
         });
-
     } catch (error) {
         console.error('IP info error:', error);
         res.status(500).json({ error: 'Failed to get IP information' });
     }
 });
+
 
 app.listen(PORT, () => {
     console.log(`Server http://localhost:${PORT} adresinde çalışıyor`);
