@@ -17,49 +17,53 @@ const PORT = process.env.PORT || 3000;
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
-            defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", "'unsafe-inline'", "cdnjs.cloudflare.com"],
-            styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"],
-            fontSrc: ["'self'", "https://cdnjs.cloudflare.com"],
-            imgSrc: ["'self'", "data:", "https:"],
-            connectSrc: ["'self'", "https://api.ipify.org", "https://ipapi.co"],
-            frameSrc: ["'none'"],
-            objectSrc: ["'none'"],
-            upgradeInsecureRequests: [],
+            defaultSrc: ["'self'"], 
+            scriptSrc: ["'self'", "'unsafe-inline'", "cdnjs.cloudflare.com"], 
+            styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"], 
+            fontSrc: ["'self'", "https://cdnjs.cloudflare.com"], 
+            imgSrc: ["'self'", "data:", "https:"], 
+            connectSrc: ["'self'", "https://api.ipify.org", "https://ipapi.co"], 
+            frameSrc: ["'none'"], 
+            objectSrc: ["'none'"], 
+            upgradeInsecureRequests: [], 
         }
     },
-    crossOriginEmbedderPolicy: true,
-    crossOriginOpenerPolicy: true,
-    crossOriginResourcePolicy: { policy: "same-site" },
-    dnsPrefetchControl: { allow: false },
-    frameguard: { action: "deny" },
-    hsts: { maxAge: 31536000, includeSubDomains: true, preload: true },
-    ieNoOpen: true,
-    noSniff: true,
-    referrerPolicy: { policy: "strict-origin-when-cross-origin" },
-    xssFilter: true
+    crossOriginEmbedderPolicy: true, 
+    crossOriginOpenerPolicy: true, 
+    crossOriginResourcePolicy: { policy: "same-site" }, 
+    dnsPrefetchControl: { allow: false }, 
+    frameguard: { action: "deny" }, 
+    hsts: { maxAge: 31536000, includeSubDomains: true, preload: true }, 
+    ieNoOpen: true, 
+    noSniff: true, 
+    referrerPolicy: { policy: "strict-origin-when-cross-origin" }, 
+    xssFilter: true 
 }));
 
-// DOS saldırılarına karşı rate limiting
 const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 dakika
-    max: 1000, // IP başına maksimum istek sayısını artırdık
+    windowMs: 15 * 60 * 1000, 
+    max: 1000, 
     message: 'Çok fazla istek gönderdiniz, lütfen daha sonra tekrar deneyin.',
     standardHeaders: true,
     legacyHeaders: false
 });
 
-// Session güvenliği
+const captchaLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, 
+    max: 100, 
+    message: 'Çok fazla başarısız deneme yaptınız, lütfen daha sonra tekrar deneyin.'
+});
+
 const sessionConfig = {
     secret: process.env.SESSION_SECRET || 'gizli-anahtar',
-    name: 'sessionId',
+    name: 'sessionId', 
     resave: false,
     saveUninitialized: false,
     cookie: {
         secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
         sameSite: 'strict',
-        maxAge: 1000 * 60 * 15, // 15 dakika
+        maxAge: 1000 * 60 * 15, 
         path: '/',
         domain: process.env.NODE_ENV === 'production' ? '.myip.xyz' : undefined
     }
@@ -72,7 +76,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(session(sessionConfig));
 
-// CORS ayarları
 const corsOptions = {
     origin: process.env.NODE_ENV === 'production' ? 'https://myip.xyz' : 'http://localhost:3000',
     methods: ['GET', 'POST'],
@@ -81,17 +84,16 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Diğer güvenlik middleware'leri
-app.use(express.json({ limit: '10kb' }));
+app.use(express.json({ limit: '10kb' })); 
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
-app.use(hpp()); // Parameter pollution koruması
-app.use(mongoSanitize()); // NoSQL injection koruması
-app.use(xss()); // XSS koruması
+app.use(hpp()); 
+app.use(mongoSanitize()); 
+app.use(xss()); 
 
-// Global rate limiting yerine sadece API endpointlerine uygulayalım
 app.use('/api/', limiter);
 
-// Request logging middleware
+app.use('/api/captcha', captchaLimiter);
+
 app.use((req, res, next) => {
     const clientIP = req.ip;
     const method = req.method;
@@ -102,7 +104,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({
@@ -113,7 +114,6 @@ app.use((err, req, res, next) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// SEO dosyaları için özel route'lar
 app.get('/robots.txt', (req, res) => {
     res.type('text/plain');
     res.sendFile(path.join(__dirname, 'public', 'robots.txt'));
@@ -124,7 +124,6 @@ app.get('/sitemap.xml', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
 });
 
-// Statik sayfa route'ları
 app.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'about.html'));
 });
@@ -145,13 +144,9 @@ app.get('/cookies', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'cookies.html'));
 });
 
-// Contact form endpoint'i
 app.post('/api/contact', async (req, res) => {
     try {
         const { name, email, subject, message } = req.body;
-        
-        // Burada e-posta gönderme işlemi yapılabilir
-        // Örnek: await sendEmail(name, email, subject, message);
         
         res.status(200).json({ success: true });
     } catch (error) {
@@ -160,14 +155,57 @@ app.post('/api/contact', async (req, res) => {
     }
 });
 
-// IP bilgileri endpoint'i
+app.get('/api/captcha', (req, res) => {
+    try {
+        const num1 = Math.floor(Math.random() * 10) + 1;
+        const num2 = Math.floor(Math.random() * 10) + 1;
+        const operators = ['+', '-', '*'];
+        const operator = operators[Math.floor(Math.random() * operators.length)];
+        
+        const question = `${num1} ${operator} ${num2}`;
+        const answer = eval(`${num1} ${operator} ${num2}`);
+        
+        req.session.captchaAnswer = answer;
+        
+        res.json({ question });
+    } catch (error) {
+        console.error('Captcha generation error:', error);
+        res.status(500).json({ error: 'Failed to generate captcha' });
+    }
+});
+
+app.post('/api/captcha/verify', (req, res) => {
+    try {
+        const { answer } = req.body;
+        const correctAnswer = req.session.captchaAnswer;
+
+        if (!correctAnswer) {
+            return res.status(400).json({ error: 'Captcha expired' });
+        }
+
+        const isCorrect = parseInt(answer) === correctAnswer;
+        
+        delete req.session.captchaAnswer;
+
+        res.json({ success: isCorrect });
+    } catch (error) {
+        console.error('Captcha verification error:', error);
+        res.status(500).json({ error: 'Failed to verify captcha' });
+    }
+});
+
 app.get('/api/ip-info', async (req, res) => {
     try {
-        // IP bilgilerini al
+        const captchaAnswer = req.query.captcha;
+        const correctAnswer = req.session.captchaAnswer;
+
+        if (!correctAnswer || parseInt(captchaAnswer) !== correctAnswer) {
+            return res.status(403).json({ error: 'Invalid captcha' });
+        }
+
         const ipResponse = await axios.get('https://api.ipify.org?format=json');
         const ip = ipResponse.data.ip;
 
-        // Lokasyon bilgilerini al
         const geoResponse = await axios.get(`https://ipapi.co/${ip}/json/`);
         const { country_name, city, org } = geoResponse.data;
 
