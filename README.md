@@ -1,48 +1,20 @@
-CheckMyIP - IP Address Lookup Tool
-CheckMyIP is an IP address lookup tool. It allows users to learn their IP address and view associated information. The web application has a simple, user-friendly interface and is suitable for users of all skill levels.
+# CheckMyIP
 
-Features
-IP Address Lookup: Users can check their own IP address.
-Geographical Location Information: Displays the city, country, and geographical location associated with the IP address.
-Internet Service Provider (ISP) Information: Displays the ISP information linked to the user’s IP address.
-User-Friendly Interface: A minimalistic and easy-to-use design.
-Mobile Responsive: Optimized to work seamlessly on any device.
-Installation
-Clone the Repository:
+CheckMyIP is a free and privacy-focused tool that allows users to check detailed information about their IP address, including location, ISP, and other relevant data. Additionally, it provides tools like internet speed tests and secure web proxy services. It's a useful resource for anyone who wants to gather information about their internet connection or maintain their privacy online.
 
-bash
-Kopyala
-Düzenle
-git clone https://github.com/username/checkmyip.git
-Install Dependencies:
+## Features
 
-bash
-Kopyala
-Düzenle
-cd checkmyip.xyz
-npm install
-Run the Application:
+- **IP Address Lookup**: Get detailed information about your current IP address, including location and ISP.
+- **Internet Speed Test**: Test the speed of your internet connection.
+- **Anonymous Web Proxy**: Browse the web securely and anonymously.
+- **Location Detection**: Get the geolocation of your IP address.
+- **ISP Information**: Learn more about the ISP (Internet Service Provider) associated with your IP address.
 
-bash
-Kopyala
-Düzenle
-npm start
-The application will now be available at http://localhost:3000.
+## Installation
 
-Technologies Used
-Frontend: HTML, CSS, JavaScript
-Backend: Node.js, Express
-Libraries: Axios (for API calls), Font Awesome (for icons)
-Contributing
-We welcome contributions! If you’d like to contribute to the project, please follow these steps:
+To run this project locally, follow these steps:
 
-Fork the repository.
-Create a new branch (git checkout -b feature-name).
-Make your changes.
-Commit your changes (git commit -am 'Add new feature').
-Push to the branch (git push origin feature-name).
-Create a new pull request.
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+1. Clone the repository:
 
-
+   ```bash
+   git clone https://github.com/safakocabas/checkmyip.git
