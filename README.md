@@ -10,11 +10,3 @@ CheckMyIP is a free and privacy-focused tool that allows users to check detailed
 - **Location Detection**: Get the geolocation of your IP address.
 - **ISP Information**: Learn more about the ISP (Internet Service Provider) associated with your IP address.
 
-## Installation
-
-To run this project locally, follow these steps:
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/safakocabas/checkmyip.git
