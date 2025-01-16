@@ -1,5 +1,5 @@
-CheckMyIP.xyz - IP Address Lookup Tool
-CheckMyIP.xyz is an IP address lookup tool. It allows users to learn their IP address and view associated information. The web application has a simple, user-friendly interface and is suitable for users of all skill levels.
+CheckMyIP - IP Address Lookup Tool
+CheckMyIP is an IP address lookup tool. It allows users to learn their IP address and view associated information. The web application has a simple, user-friendly interface and is suitable for users of all skill levels.
 
 Features
 IP Address Lookup: Users can check their own IP address.
@@ -13,7 +13,7 @@ Clone the Repository:
 bash
 Kopyala
 Düzenle
-git clone https://github.com/username/checkmyip.xyz.git
+git clone https://github.com/username/checkmyip.git
 Install Dependencies:
 
 bash
@@ -45,5 +45,4 @@ Create a new pull request.
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-Contact
-For any questions or suggestions, please contact us at support@checkmyip.xyz.
+
