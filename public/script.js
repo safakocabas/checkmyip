@@ -16,27 +16,36 @@ document.addEventListener('DOMContentLoaded', () => {
             // Loading durumunu göster
             if (loader) loader.style.display = 'block';
             if (ipInfo) ipInfo.style.display = 'none';
-
+    
             // IP bilgilerini al
             const response = await fetch('/api/ip-info');
-
+    
+            // Response'un başarılı olup olmadığını kontrol et
             if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.error || 'IP bilgileri alınamadı');
+                throw new Error(`HTTP Error: ${response.status}`);
             }
-
-            const data = await response.json();
-
+    
+            // Yanıtın JSON formatında olup olmadığını kontrol et
+            const text = await response.text(); // JSON verisini almadan önce metin olarak al
+            let data;
+    
+            try {
+                // Metin verisini JSON formatına dönüştür
+                data = JSON.parse(text);
+            } catch (error) {
+                throw new Error('Beklenmeyen formatta veri alındı');
+            }
+    
             // Bilgileri göster
             if (ipElements.ipAddress) ipElements.ipAddress.textContent = data.ip;
             if (ipElements.country) ipElements.country.textContent = data.country;
             if (ipElements.city) ipElements.city.textContent = data.city;
             if (ipElements.isp) ipElements.isp.textContent = data.isp;
-
+    
             // Loading durumunu gizle
             if (loader) loader.style.display = 'none';
             if (ipInfo) ipInfo.style.display = 'block';
-
+    
         } catch (error) {
             console.error('Hata:', error);
             if (loader) loader.style.display = 'none';

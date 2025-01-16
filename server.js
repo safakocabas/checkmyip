@@ -196,19 +196,15 @@ app.post('/api/captcha/verify', (req, res) => {
 
 app.get('/api/ip-info', async (req, res) => {
     try {
-        const captchaAnswer = req.query.captcha;
-        const correctAnswer = req.session.captchaAnswer;
-
-        if (!correctAnswer || parseInt(captchaAnswer) !== correctAnswer) {
-            return res.status(403).json({ error: 'Invalid captcha' });
-        }
-
+        // IP bilgilerini alın
         const ipResponse = await axios.get('https://api.ipify.org?format=json');
         const ip = ipResponse.data.ip;
 
+        // Lokasyon bilgilerini al
         const geoResponse = await axios.get(`https://ipapi.co/${ip}/json/`);
         const { country_name, city, org } = geoResponse.data;
 
+        // JSON yanıtı gönder
         res.json({
             ip: ip,
             country: country_name,
