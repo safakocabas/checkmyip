@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[PAGE_TITLE] - CheckMyIP.xyz</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">
+            <img src="/logo.png" alt="CheckMyIP Logo">
+        </a>
+        <button class="mobile-menu-button" aria-label="Toggle menu">☰</button>
+        <div class="navbar-nav">
+            <a href="/" class="nav-link">
+                <span data-translate="home">🏠 Home</span>
+            </a>
+            <a href="/tools" class="nav-link">
+                <span data-translate="tools">🛠️ Tools</span>
+            </a>
+            <select id="languageSelect" class="nav-link">
+                <option value="en">English</option>
+                <option value="tr">Türkçe</option>
+                <option value="es">Español</option>
+                <option value="de">Deutsch</option>
+            </select>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="welcome-section">
+            <h1 data-translate="[PAGE_TITLE_KEY]">[PAGE_HEADING]</h1>
+            <p data-translate="[PAGE_DESC_KEY]">[PAGE_DESCRIPTION]</p>
+        </div>
+
+        <div class="content-card">
+            <!-- Sayfa içeriği buraya gelecek -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 data-translate="aboutUs">About Us</h4>
+                <div class="footer-links">
+                    <a href="/about" data-translate="aboutUs">About CheckMyIP.xyz</a>
+                    <a href="/contact" data-translate="contactUs">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4 data-translate="services">Services</h4>
+                <div class="footer-links">
+                    <a href="javascript:void(0)" class="disabled" data-translate="speedTest">⚡ Speed Test (Very Soon)</a>
+                    <a href="javascript:void(0)" class="disabled" data-translate="webProxy">🌐 Web Proxy (Very Soon)</a>
+                    <a href="/tools" data-translate="otherTools">🛠️ Other Tools</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4 data-translate="legal">Legal</h4>
+                <div class="footer-links">
+                    <a href="/privacy" data-translate="privacyPolicy">Privacy Policy</a>
+                    <a href="/terms" data-translate="termsOfService">Terms of Service</a>
+                    <a href="/cookies" data-translate="cookiePolicy">Cookie Policy</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4 data-translate="connectWithUs">Connect With Us</h4>
+                <div class="footer-social">
+                    <a href="https://twitter.com/checkmyipxyz" target="_blank" rel="noopener">🐦</a>
+                    <a href="https://github.com/checkmyipxyz" target="_blank" rel="noopener">📦</a>
+                    <a href="https://discord.gg/checkmyip" target="_blank" rel="noopener">💬</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CheckMyIP.xyz. <span data-translate="copyright">All rights reserved.</span></p>
+        </div>
+    </footer>
+
+    <script src="/theme.js"></script>
+    <script src="/translations.js"></script>
+</body>
+</html> 

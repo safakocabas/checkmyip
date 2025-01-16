@@ -1,0 +1,26 @@
+{
+  "name": "ip-kontrol-sistemi",
+  "version": "1.0.0",
+  "description": "IP kontrol ve bilgi görüntüleme sistemi",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^5.5.1",
+    "express-session": "^1.18.1",
+    "fast-speedtest-api": "^0.3.2",
+    "fs": "^0.0.1-security",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^9.0.2",
+    "ws": "^8.18.0",
+    "xss-clean": "^0.1.4"
+  }
+}

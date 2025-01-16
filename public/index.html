@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckMyIP.xyz - Free IP Lookup</title>
+    <meta name="description" content="Get detailed information about your IP address.">
+    <meta name="keywords" content="ip lookup, ip checker,  ip address">
+    <meta name="author" content="CheckMyIP.xyz">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://checkmyip.xyz/">
+    <meta property="og:title" content="CheckMyIP.xyz - Free IP Lookup">
+    <meta property="og:description" content="Get detailed information about your IP address, location, and ISP.">
+    <meta property="og:image" content="https://checkmyip.xyz/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://checkmyip.xyz/">
+    <meta property="twitter:title" content="CheckMyIP.xyz - Free IP Lookup">
+    <meta property="twitter:description" content="Get detailed information about your IP address, location, and ISP.">
+    <meta property="twitter:image" content="https://checkmyip.xyz/og-image.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://checkmyip.xyz/">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "CheckMyIP.xyz",
+        "url": "https://checkmyip.xyz",
+        "description": "Free online tools for checking IP address.",
+        "applicationCategory": "Internet Tools",
+        "operatingSystem": "All",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "IP Address Lookup",
+            "Location Detection",
+            "ISP Information"
+        ]
+    }
+    </script>
+</head>
+<body>
+<!-- Google AdSense Reklam Alanı 
+<div class="advertisement">
+    <p>Reklam Alanı</p>
+</div>-->
+
+<!-- ana kodlar -->
+    <div class="container">
+        <img src="logo.png" alt="logo" srcset="logo.png" id="logo">
+        <div class="welcome-section">
+            <h1 data-translate="welcome">Welcome to CheckMyIP.xyz</h1>
+            <p data-translate="welcomeDesc">Get detailed information about your IP address.</p>
+        </div>
+
+        <div class="ip-card">
+            <div id="loader" class="loader"></div>
+            <div id="ipInfo" class="ip-info">
+                <div class="info-row">
+                    <span class="label" data-translate="ipAddress">IP Address</span>
+                    <span class="value" id="ipAddress">Loading...</span>
+                </div>
+                <div class="info-row">
+                    <span class="label" data-translate="country">Country</span>
+                    <span class="value" id="country">Loading...</span>
+                </div>
+                <div class="info-row">
+                    <span class="label" data-translate="city">City</span>
+                    <span class="value" id="city">Loading...</span>
+                </div>
+                <div class="info-row">
+                    <span class="label" data-translate="isp">ISP</span>
+                    <span class="value" id="isp">Loading...</span>
+                </div>
+            </div>
+
+            <div id="captchaContainer" class="captcha-container">
+                <div class="captcha-question" id="captchaQuestion"></div>
+                <form id="captchaForm">
+                    <input type="number" id="captchaInput" class="captcha-input" required>
+                    <button type="submit" class="captcha-button" data-translate="submit">Submit</button>
+                    <button type="button" id="refreshCaptcha" class="refresh-captcha">🔄</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+<!-- Google AdSense Reklam Alanı 
+<div class="advertisement">
+    <p>Reklam Alanı</p>
+</div>-->
+
+<!-- footer alanı -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <a href="/about" data-translate="aboutUs">About CheckMyIP.xyz</a>
+                <a href="/contact" data-translate="contactUs">Contact Us</a>
+                <a href="/privacy" data-translate="privacyPolicy">Privacy Policy</a>
+                <a href="/terms" data-translate="termsOfService">Terms of Service</a>
+                <a href="/cookies" data-translate="cookiePolicy">Cookie Policy</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://twitter.com/checkmyipxyz" target="_blank" rel="noopener" aria-label="Twitter">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="https://github.com/checkmyipxyz" target="_blank" rel="noopener" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://discord.gg/checkmyip" target="_blank" rel="noopener" aria-label="Discord">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CheckMyIP.xyz. <span data-translate="copyright">All rights reserved.</span></p>
+        </div>
+    </footer>
+    
+
+    <script src="script.js"></script>
+   
+</body>
+</html> 
